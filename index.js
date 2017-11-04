@@ -45,7 +45,7 @@ exports.default = function ({ types: t }) {
                         t.unaryExpression('!', initializedMember),
                         t.blockStatement([
                             t.expressionStatement(t.assignmentExpression('=', valueMember, requireExpression)),
-                            t.expressionStatement(t.assignmentExpression('=', initializedMember, t.booleanLiteral))
+                            t.expressionStatement(t.assignmentExpression('=', initializedMember, t.booleanLiteral(true)))
                         ])
                     ),
                     t.returnStatement(valueMember)
