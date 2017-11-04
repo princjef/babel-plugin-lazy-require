@@ -1,0 +1,25 @@
+{
+  "name": "babel-plugin-lazy-require",
+  "version": "0.0.1",
+  "description": "Transform CommonJS require statements into lazily evaluated imports",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/princjef/babel-plugin-lazy-require.git"
+  },
+  "keywords": [
+    "babel",
+    "require",
+    "lazy",
+    "import"
+  ],
+  "author": "Jeff Principe <princjef@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/princjef/babel-plugin-lazy-require/issues"
+  },
+  "homepage": "https://github.com/princjef/babel-plugin-lazy-require#readme"
+}
