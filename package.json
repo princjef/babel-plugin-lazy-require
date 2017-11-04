@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-lazy-require",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "Transform CommonJS require statements into lazily evaluated imports",
   "main": "index.js",
   "scripts": {
