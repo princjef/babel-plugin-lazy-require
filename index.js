@@ -134,7 +134,7 @@ exports.default = function ({ types: t }) {
             // scope as our requires or isn't in our declarations map, we
             // can't do anything with it
             const binding = path.scope.bindings[path.node.name];
-            if (bindingg && bindings.scope !== this.requireScope) {
+            if (binding && bindings.scope !== this.requireScope) {
                 return;
             }
 
