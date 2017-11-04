@@ -69,7 +69,7 @@ exports.default = function ({ types: t }) {
                 }
             }
 
-            path.unshiftContainer('body', t.variableDeclaration('const', [t.variableDecclarator(importsVar, t.objectExpression(properties))]));
+            path.unshiftContainer('body', t.variableDeclaration('const', [t.variableDeclarator(importsVar, t.objectExpression(properties))]));
             for (const declaration of variableDeclarations) {
                 path.unshiftContainer('body', declaration);
             }
