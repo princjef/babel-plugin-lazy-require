@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/princjef/babel-plugin-lazy-require.svg?branch=master)](https://travis-ci.org/princjef/babel-plugin-lazy-require)
+[![NPM version](https://img.shields.io/npm/v/babel-plugin-lazy-require.svg)](https://www.npmjs.com/package/babel-plugin-lazy-require)
+[![Coverage Status](https://img.shields.io/codecov/c/github/princjef/babel-plugin-lazy-require/master.svg)](https://codecov.io/gh/princjef/babel-plugin-lazy-require)
+
 # babel-plugin-lazy-require
 
 Transform global require statements that run on module load to lazily evaluated
