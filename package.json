@@ -4,7 +4,7 @@
   "description": "Transform CommonJS require statements into lazily evaluated imports",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "babel test --plugins ../index.js --out-dir test-dist"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/princjef/babel-plugin-lazy-require/issues"
   },
-  "homepage": "https://github.com/princjef/babel-plugin-lazy-require#readme"
+  "homepage": "https://github.com/princjef/babel-plugin-lazy-require#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0"
+  }
 }

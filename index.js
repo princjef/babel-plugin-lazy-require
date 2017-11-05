@@ -113,8 +113,12 @@ exports.default = function ({ types: t }) {
         Identifier(path) {
             // We don't care about declarations
             if (
-                (t.isVariableDeclarator(path.parent) || t.isFunctionDeclaration(path.parent)) &&
-                path.parent.id === path.node
+                (
+                    (t.isVariableDeclarator(path.parent) || t.isFunctionDeclaration(path.parent)) &&
+                    path.parent.id === path.node
+                ) || (
+                    (t.isObjectProperty(path.parent)) && path.parent.key === path.node
+                )
             ) {
                 return;
             }
