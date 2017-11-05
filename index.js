@@ -117,7 +117,8 @@ exports.default = function ({ types: t }) {
                     (t.isVariableDeclarator(path.parent) || t.isFunctionDeclaration(path.parent)) &&
                     path.parent.id === path.node
                 ) || (
-                    (t.isObjectProperty(path.parent)) && path.parent.key === path.node
+                    (t.isObjectProperty(path.parent) || t.isObjectMethod(path.parent)) &&
+                    path.parent.key === path.node
                 )
             ) {
                 return;
