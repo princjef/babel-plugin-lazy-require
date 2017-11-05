@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc babel test --plugins ../index.js --out-dir test-dist",
-    "coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"
+    "coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -26,12 +27,14 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "codecov": "^3.0.0",
-    "nyc": "^11.3.0"
+    "nyc": "^11.3.0",
+    "standard-version": "^4.2.0"
   },
   "nyc": {
     "exclude": [
       "test",
-      "test-dist"
+      "test-dist",
+      "coverage"
     ],
     "cache": false,
     "all": true,
