@@ -4,7 +4,8 @@
   "description": "Transform CommonJS require statements into lazily evaluated imports",
   "main": "index.js",
   "scripts": {
-    "test": "babel test --plugins ../index.js --out-dir test-dist"
+    "test": "nyc babel test --plugins ../index.js --out-dir test-dist",
+    "coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,21 @@
   },
   "homepage": "https://github.com/princjef/babel-plugin-lazy-require#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0"
+    "babel-cli": "^6.26.0",
+    "codecov": "^3.0.0",
+    "nyc": "^11.3.0"
+  },
+  "nyc": {
+    "exclude": [
+      "test",
+      "test-dist"
+    ],
+    "cache": false,
+    "all": true,
+    "reporter": [
+      "text",
+      "html",
+      "json"
+    ]
   }
 }
