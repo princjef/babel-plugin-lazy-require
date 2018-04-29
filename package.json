@@ -26,7 +26,7 @@
   "homepage": "https://github.com/princjef/babel-plugin-lazy-require#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "codecov": "^3.0.0",
+    "codecov": "^3.0.1",
     "nyc": "^11.3.0",
     "standard-version": "^4.2.0"
   },
