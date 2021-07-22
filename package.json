@@ -1,10 +1,10 @@
 {
   "name": "babel-plugin-lazy-require",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Transform CommonJS require statements into lazily evaluated imports",
   "main": "index.js",
   "scripts": {
-    "test": "nyc babel test --plugins ../index.js --out-dir test-dist",
+    "test": "nyc babel test --ignore test/fixtures --plugins ../index.js --out-dir test-dist && diff -b test-dist/sample.js test/fixtures/sample.js",
     "coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "release": "standard-version"
   },

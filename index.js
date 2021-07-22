@@ -32,7 +32,7 @@ exports.default = function ({ types: t }) {
             variableDeclarations.reverse();
 
             const properties = [];
-            for (const [name, { identifier, requireString, isConst }] of declarations) {
+            for (const [name, { identifier, requireString, isConst, outerFunc }] of declarations) {
                 const nameIdentifier = t.identifier(name);
                 const initializedIdentifier = t.identifier('initialized');
                 const initializedMember = t.memberExpression(identifier, initializedIdentifier);
@@ -40,11 +40,15 @@ exports.default = function ({ types: t }) {
                 const valueMember = t.memberExpression(identifier, valueIdentifier);
                 const requireExpression = t.callExpression(t.identifier('require'), [t.stringLiteral(requireString)]);
 
+                const requireExpressionWithOuterFunc = outerFunc
+                    ? t.callExpression(outerFunc, [requireExpression])
+                    : requireExpression;
+
                 properties.push(t.objectMethod('get', nameIdentifier, [], t.blockStatement([
                     t.ifStatement(
                         t.unaryExpression('!', initializedMember),
                         t.blockStatement([
-                            t.expressionStatement(t.assignmentExpression('=', valueMember, requireExpression)),
+                            t.expressionStatement(t.assignmentExpression('=', valueMember, requireExpressionWithOuterFunc)),
                             t.expressionStatement(t.assignmentExpression('=', initializedMember, t.booleanLiteral(true)))
                         ])
                     ),
@@ -76,6 +80,13 @@ exports.default = function ({ types: t }) {
         }
     };
 
+    function hasRequireCall (init) {
+        return init &&
+            t.isIdentifier(init.callee, { name: 'require' }) &&
+            init.arguments.length === 1 &&
+            t.isLiteral(init.arguments[0]);
+    }
+
     const requireDeclarationVisitor = {
         VariableDeclaration(path) {
             // TODO: support nonglobal declarations
@@ -88,19 +99,27 @@ exports.default = function ({ types: t }) {
                 VariableDeclarator(path) {
                     if (
                         !t.isIdentifier(path.node.id) ||
-                        !t.isCallExpression(path.node.init) ||
-                        !t.isIdentifier(path.node.init.callee, { name: 'require' }) ||
-                        path.node.init.arguments.length !== 1 ||
-                        !t.isLiteral(path.node.init.arguments[0])
+                        !t.isCallExpression(path.node.init)
                     ) {
                         return;
                     }
 
-                    this.declarations.set(path.node.id.name, {
-                        node: path.node,
-                        isConst: path.parent.kind === 'const',
-                        requireString: path.node.init.arguments[0].value
-                    });
+                    if (hasRequireCall(path.node.init)) {
+                        this.declarations.set(path.node.id.name, {
+                            node: path.node,
+                            isConst: path.parent.kind === 'const',
+                            requireString: path.node.init.arguments[0].value
+                        });
+                    } else if (path.node.init.arguments.length === 1 && hasRequireCall(path.node.init.arguments[0])) {
+                        this.declarations.set(path.node.id.name, {
+                            node: path.node,
+                            isConst: path.parent.kind === 'const',
+                            outerFunc: path.node.init.callee,
+                            requireString: path.node.init.arguments[0].arguments[0].value
+                        });
+                    } else {
+                        return;
+                    }
 
                     // Since this is going to be replaced, we don't need it any more
                     path.remove();
