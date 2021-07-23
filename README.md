@@ -1,7 +1,4 @@
-[![Build Status](https://travis-ci.org/princjef/babel-plugin-lazy-require.svg?branch=master)](https://travis-ci.org/princjef/babel-plugin-lazy-require)
-[![NPM version](https://img.shields.io/npm/v/babel-plugin-lazy-require.svg)](https://www.npmjs.com/package/babel-plugin-lazy-require)
-[![Coverage Status](https://img.shields.io/codecov/c/github/princjef/babel-plugin-lazy-require/master.svg)](https://codecov.io/gh/princjef/babel-plugin-lazy-require)
-
+[![Build Status](https://travis-ci.org/mhassan1/babel-plugin-lazy-require.svg?branch=master)](https://travis-ci.org/mhassan1/babel-plugin-lazy-require)
 # babel-plugin-lazy-require
 
 Transform global require statements that run on module load to lazily evaluated
@@ -59,4 +56,30 @@ function myCode() {
     // Module is imported and used here
     _imports.someModule.doSomething();
 }
+```
+
+## How It Works
+
+The following imports will be transformed:
+```js
+// assignment
+const someModule = require('some-module')
+let someModule = require('some-module')
+var someModule = require('some-module')
+
+// one layer of wrapping
+// this is useful for wrappers like `_interopRequireWildcard` from Babel `preset-env`
+const someWrappedModule = wrap(require('some-module'))
+```
+
+The following imports will not be transformed:
+```js
+// no assignment so no way to lazy-load
+require('some-module')
+
+// one layer of wrapping with multiple parameters is not allowed
+const someWrappedModule = wrap(require('some-module'), 'data')
+
+// multiple wrapping layers is not allowed
+const someWrappedModule = wrap(wrap(require('some-module')))
 ```
