@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/princjef/babel-plugin-lazy-require.git"
+    "url": "git+https://github.com/mhassan1/babel-plugin-lazy-require.git"
   },
   "keywords": [
     "babel",
@@ -21,9 +21,9 @@
   "author": "Jeff Principe <princjef@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/princjef/babel-plugin-lazy-require/issues"
+    "url": "https://github.com/mhassan1/babel-plugin-lazy-require/issues"
   },
-  "homepage": "https://github.com/princjef/babel-plugin-lazy-require#readme",
+  "homepage": "https://github.com/mhassan1/babel-plugin-lazy-require#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "codecov": "^3.0.1",
