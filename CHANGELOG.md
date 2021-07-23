@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/princjef/babel-plugin-lazy-require/compare/v1.0.3...v1.1.0) (2021-07-23)
+
+
+### Features
+
+* add support for require in the first position of a function call ([bd4cd18](https://github.com/princjef/babel-plugin-lazy-require/commit/bd4cd18))
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/princjef/babel-plugin-lazy-require/compare/v1.0.2...v1.0.3) (2018-04-29)
 
