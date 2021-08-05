@@ -3,7 +3,4 @@ node_js:
     - lts/*
     - node
 os: linux
-arch:
-    - arm64
-    - ppc64le
-    - s390x
+arch: arm64
