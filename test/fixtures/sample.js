@@ -16,7 +16,7 @@ const _nonglobalRequire = {
 const _imports = {
     get constGlobalRequire() {
         if (!_constGlobalRequire.initialized) {
-            _constGlobalRequire.value = require('const-global-require');
+            _constGlobalRequire.value = require("const-global-require");
             _constGlobalRequire.initialized = true;
         }
 
@@ -25,7 +25,7 @@ const _imports = {
 
     get letGlobalRequire() {
         if (!_letGlobalRequire.initialized) {
-            _letGlobalRequire.value = require('let-global-require');
+            _letGlobalRequire.value = require("let-global-require");
             _letGlobalRequire.initialized = true;
         }
 
@@ -34,7 +34,7 @@ const _imports = {
 
     set letGlobalRequire(value) {
         if (!_letGlobalRequire.initialized) {
-            require('let-global-require');
+            require("let-global-require");
 
             _letGlobalRequire.initialized = true;
         }
@@ -44,7 +44,7 @@ const _imports = {
 
     get varGlobalRequire() {
         if (!_varGlobalRequire.initialized) {
-            _varGlobalRequire.value = require('var-global-require');
+            _varGlobalRequire.value = require("var-global-require");
             _varGlobalRequire.initialized = true;
         }
 
@@ -53,7 +53,7 @@ const _imports = {
 
     set varGlobalRequire(value) {
         if (!_varGlobalRequire.initialized) {
-            require('var-global-require');
+            require("var-global-require");
 
             _varGlobalRequire.initialized = true;
         }
@@ -63,7 +63,7 @@ const _imports = {
 
     get constWrappedRequire() {
         if (!_constWrappedRequire.initialized) {
-            _constWrappedRequire.value = noop(require('const-wrapped-require'));
+            _constWrappedRequire.value = noop(require("const-wrapped-require"));
             _constWrappedRequire.initialized = true;
         }
 
@@ -72,7 +72,7 @@ const _imports = {
 
     get nonglobalRequire() {
         if (!_nonglobalRequire.initialized) {
-            _nonglobalRequire.value = require('nonglobal-require');
+            _nonglobalRequire.value = require("nonglobal-require");
             _nonglobalRequire.initialized = true;
         }
 
@@ -84,16 +84,15 @@ const _imports = {
 require('static-require');
 
 const constWrappedRequireWithArgs = noop(require('const-wrapped-require'), 'data');
-
 const obj = {
     letGlobalRequire: () => {
         function varGlobalRequire() {
-
             _imports.constGlobalRequire.prop = 5;
             _imports.letGlobalRequire = {};
             const varGlobalRequire = {
                 foo: '13'
             };
+
             try {
                 obj.constGlobalRequire = _imports.varGlobalRequire;
             } catch (letGlobalRequire) {}
@@ -101,7 +100,10 @@ const obj = {
 
         class constGlobalRequire {
             letGlobalRequire() {}
+
         }
     },
+
     varGlobalRequire() {}
+
 };
