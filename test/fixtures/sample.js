@@ -10,6 +10,9 @@ const _varGlobalRequire = {
 const _constWrappedRequire = {
     initialized: false
 };
+const _letWrappedRequire = {
+    initialized: false
+};
 const _nonglobalRequire = {
     initialized: false
 };
@@ -68,6 +71,24 @@ const _imports = {
         }
 
         return _constWrappedRequire.value;
+    },
+
+    get letWrappedRequire() {
+        if (!_letWrappedRequire.initialized) {
+            _letWrappedRequire.value = noop(require("let-wrapped-require"));
+            _letWrappedRequire.initialized = true;
+        }
+
+        return _letWrappedRequire.value;
+    },
+
+    set letWrappedRequire(value) {
+        if (!_letWrappedRequire.initialized) {
+            noop(require("let-wrapped-require"));
+            _letWrappedRequire.initialized = true;
+        }
+
+        _letWrappedRequire.value = value;
     },
 
     get nonglobalRequire() {

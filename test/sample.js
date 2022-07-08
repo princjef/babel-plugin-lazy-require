@@ -3,6 +3,7 @@ let letGlobalRequire = require('let-global-require');
 var varGlobalRequire = require('var-global-require');
 require('static-require');
 const constWrappedRequire = noop(require('const-wrapped-require'));
+let letWrappedRequire = noop(require('let-wrapped-require'));
 const constWrappedRequireWithArgs = noop(require('const-wrapped-require'), 'data');
 
 const obj = {

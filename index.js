@@ -64,7 +64,7 @@ exports.default = function ({ types: t }) {
                         t.ifStatement(
                             t.unaryExpression('!', initializedMember),
                             t.blockStatement([
-                                t.expressionStatement(requireExpression),
+                                t.expressionStatement(requireExpressionWithOuterFunc),
                                 t.expressionStatement(t.assignmentExpression('=', initializedMember, t.booleanLiteral(true)))
                             ])
                         ),
